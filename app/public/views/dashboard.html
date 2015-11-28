@@ -1,0 +1,21 @@
+<div id="dashboard">
+  
+  <div layout-sm="column" layout-gt-sm="row" layout-align="center center">
+    <div flex="15" layout-margin layout="column">
+      <img src="assets/img/single-player.png" ng-click="playSinglePlayer()" />
+      <md-button ng-click="playSinglePlayer()">Single Player</md-button>
+    </div>
+      
+    <div flex="15" layout-margin layout="column">
+      <img src="assets/img/multiplayer.png" ui-sref="games" />
+      <md-button ui-sref="games">Multiplayer</md-button>
+    </div>
+    
+    <div flex="15" layout-margin layout="column">
+      <md-tooltip>Not available yet</md-tooltip>
+      <img src="assets/img/pvp.png" style="opacity:0.5;" />
+      <md-button ng-disabled="true">PVP</md-button>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div layout="column" ng-controller="gameUIController">
+  <div id="canvas" class="md-whiteframe-z3"></div>
+  <div layout="row" layout-margin>
+    <div id="editor-container" flex="50">
+      <small class="text-muted">Use &#8984;S (or Ctrl+S) to save your code</small>
+      <code-editor></code-editor>
+    </div>
+    <div id="menu" flex="50">
+      <md-tabs class="md-background" md-dynamic-height>
+        <md-tab label="game">
+          <div layout="column">
+            <div layout="row">
+              <md-button md-theme="altTheme" class="md-primary md-raised" ng-click="play()" ng-disabled="controls.play.disabled">Play Turn</md-button>
+              <md-switch md-theme="altTheme" class="md-primary md-caption" ng-model="controls.play.auto" aria-label="Auto Play">Auto</md-switch>
+            </div>
+            <div layout="row">
+              <md-button class="md-primary" ng-click="methodsWindow.shown = true"><i class="fa fa-cubes"></i> Methods</md-button>
+            </div>
+            <div style="height:10%"></div>
+            <md-divider></md-divider>
+            <div layout="row" layout-align="center end">
+              <md-button class="md-warn md-raised" ng-click="quit()">Quit Game</md-button>
+            </div>
+          </div>
+        </md-tab>
+        
+        <md-tab label="stats">
+          <md-content class="md-padding" layout="column">
+            <div ng-repeat="prop in ['strength', 'agility', 'vitality', 'energy']">
+              <span class="text-muted">{{ prop | uppercase }}: </span><span>{{ character.instance[prop] }}</span>
+              <md-button ng-click="addPoint(prop)" ng-show="character.pointsAvailable" class="md-accent md-raised md-button-mini" aria-label="{{prop}}"><i class="fa fa-plus"></i></md-button>
+            </div>
+            <div><span class="text-muted">Level: </span><span>{{ character.instance.level }}</span></div>
+            <div><span class="text-muted">Life: </span><span>{{ character.instance.life | number : 0 }}</span></div>
+            <div><span class="text-muted">Mana: </span><span>{{ character.instance.mana | number : 0 }}</span></div>
+            <div><span class="text-muted">Attack Damage: </span><span>{{ character.instance.ad | number : 0 }}</span></div>
+            <div><span class="text-muted">Ability Power: </span><span>{{ character.instance.ap | number : 0 }}</span></div>
+            <div><span class="text-muted">Armor: </span><span>{{ character.instance.armor | number: 0 }}</span></div>
+          </md-content>
+        </md-tab>
+        
+        <md-tab label="docs">
+          <div layout="row">
+            <div flex="33" layout="column">
+              <span class="text-center md-caption">Methods</span>
+              <md-button class="md-primary" ng-repeat="(name, details) in METHODS" ng-click="showMethods(name)"><i class="fa fa-cubes"></i> {{ name }}</md-button>
+            </div>
+            <div flex="33" layout="column">
+              <span class="text-center md-caption">Spells</span>
+              <md-button class="md-primary" ng-repeat="(class, spells) in SPELLS" ng-click="showSpells(class)">{{ class }}</md-button>
+            </div>
+            <div flex="33" layout="column">
+              <span class="text-center md-caption">Skills</span>
+              <md-button class="md-primary" ng-repeat="(class, skill) in SKILLS" ng-click="showSkills(class)">{{ class }}</md-button>
+            </div>
+          </div>
+        </md-tab>
+        
+        <md-tab label="examples">
+          <small><i>Not ready yet</i></small>
+          {{game}}
+        </md-tab>
+        
+      </md-tabs>
+    </div>
+  </div>
+  
+  <div id="methods-window" layout="column" class="md-whiteframe-z5" ng-show="methodsWindow.shown">
+    <md-toolbar mouse-draggable drags-parent="true">
+      <div class="md-toolbar-tools">
+        <span><i class="fa fa-cubes"></i> Methods</span>
+        <!-- fill up the space between left and right area -->
+        <span flex></span>
+        <md-button ng-click="methodsWindow.shown = false" class="md-icon-button"><md-icon md-font-set="md">close</md-icon></md-button>
+      </div>
+    </md-toolbar>
+    <div layout="row">
+      <div layout="column" class="md-padding">
+        <md-button class="md-button-mini" ng-repeat="(name, details) in METHODS.orientation" ng-click="methodsWindow.selected = details" ng-class="{'md-accent md-raised': methodsWindow.selected == details}">{{ name }}</md-button>
+        <md-button class="md-button-mini" ng-repeat="(name, details) in METHODS.tactics" ng-click="methodsWindow.selected = details" ng-class="{'md-accent md-raised': methodsWindow.selected == details}">{{ name }}</md-button>
+        <md-button class="md-button-mini" ng-repeat="(name, details) in METHODS.actions" ng-click="methodsWindow.selected = details" ng-class="{'md-accent md-raised': methodsWindow.selected == details}">{{ name }}</md-button>
+      </div>
+      <div layout="column" class="md-padding">
+        <span>{{ methodsWindow.selected.declaration }}</span>
+        <md-divider></md-divider>
+        <p>{{ methodsWindow.selected.description }}</p>
+        <p class="text-warning" ng-show="methodsWindow.selected.note.length"><i class="fa fa-warning"></i> {{ methodsWindow.selected.note }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div layout="column" offset="10" flex="80">
+  <md-content>
+    <div>
+      <md-button class="md-accent md-raised" ng-click="createGame()" ng-disabled="selectingCharacter">Create Game</md-button>
+    </div>
+    <md-divider></md-divider>
+    <div layout="row" ng-repeat="game in games" layout-margin layout-padding class="game" ng-click="joinGame(game.id)">
+      <div flex="20" class="md-subhead">{{ game.id }}</div>
+      <div flex class="md-caption"> {{ game.details.players.count }} players playing</div>
+      <md-button md-theme="altTheme" class="md-primary md-raised" ng-click="joinGame(game.id)">Join</md-button>
+    </div>
+  </md-content>
+</div>

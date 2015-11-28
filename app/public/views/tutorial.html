@@ -1,0 +1,82 @@
+<html ng-app="jlegends-tutorial">
+  <head>
+    <link href="assets/components/angular-material/angular-material.min.css" rel="stylesheet">
+    <link href="assets/components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/components/messanger/css/messenger.css" rel="stylesheet">
+    <link href="assets/components/messanger/css/messenger-theme-flat.css" rel="stylesheet">
+    <link href="assets/components/codemirror/codemirror.css" rel="stylesheet">
+    <link href="assets/components/codemirror/material.css" rel="stylesheet">
+    <link href="assets/components/highlight/styles/github.css" rel="stylesheet">
+    <link href="views/tutorial.css" rel="stylesheet">
+  </head>
+  <body ng-controller="tutorialController" layout="column" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span><img id="logo" src="assets/img/logo-yellow.png" layout-padding /></span>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+    
+    <div layout="row">
+      <div id="canvas" flex="66">
+        
+      </div>
+      <div layout="column" class="md-padding">
+        <md-content>
+          <h3>{{ titles[tutorial.step] }}</h3>
+          <p>{{ texts[tutorial.step] }}</p>
+          <div ng-show="codes[tutorial.step]" hljs source="codes[tutorial.step]" language="javascript"></div>
+        </md-content>
+        <md-button class="md-accent md-raised" ng-click="next()" ng-show="tutorial.step == 0">Start Tutorial</md-button>
+        <md-button class="md-primary md-raised" ng-click="next()" ng-show="tutorial.step > 0 && tutorial.nextShown && !tutorial.finished" style="width:50%">{{ tutorial.nextText }}</md-button>
+        <span class="md-caption md-margin md-padding" ng-show="tutorial.step > 0">{{ tips[tutorial.step] }}</span>
+        <md-button class="md-accent md-raised" href="/login" ng-show="tutorial.finished">JOIN jLegends</md-button>
+      </div>
+    </div>
+    <div layout="row" ng-show="tutorial.step > 0">
+      <div flex="66">
+        <code-editor></code-editor>
+      </div>
+      <div>
+        <md-button md-theme="altTheme" class="md-primary md-raised" ng-click="execute()" ng-show="tutorial.playShown">Play Turn</md-button>
+      </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="assets/components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/components/angular/angular.min.js"></script>
+    <script src="assets/components/angular-animate/angular-animate.min.js"></script>
+    <script src="assets/components/angular-aria/angular-aria.min.js"></script>
+    <script src="assets/components/angular-material/angular-material.min.js"></script>
+    <script src="assets/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="assets/components/angular-ui-router-css/angular-ui-router-css.min.js"></script>
+    <script src="assets/components/messanger/js/messenger.min.js"></script>
+    <script src="assets/components/messanger/js/messenger-theme-flat.js"></script>
+    <script src="assets/components/codemirror/codemirror.js"></script>
+    <script src="assets/components/codemirror/javascript-mode.js"></script>
+    <script src="assets/components/highlight/highlight.pack.js"></script>
+    <script src="assets/components/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="assets/components/phaser/build/phaser.min.js"></script>
+    
+    <script src="assets/js/Javascript.extend.js"></script>
+    <script src="assets/js/Array.extend.js"></script>
+    
+    <script src="tutorial.js"></script>
+    <script src="assets/components/angular-socket-io/socket.min.js"></script>
+    
+    <script src="game/classes/Game.js"></script>
+    <script src="game/classes/Canvas.js"></script>
+    <script src="game/classes/Player.js"></script>
+    <script src="game/classes/Npc.js"></script>
+    <script src="game/classes/Sandbox.js"></script>
+    <script src="game/classes/Animations.js"></script>
+    <script src="game/preload.js"></script>
+    <script src="game/create.js"></script>
+    <script src="game/update.js"></script>
+    <script src="game/render.js"></script>
+    
+    <script>
+      Messenger.options = { theme: 'flat', extraClasses: 'messenger-fixed messenger-on-top' };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'source-code';
+  src: url('../assets/fonts/SourceCodePro-Semibold.ttf');
+}
+
+@font-face {
+  font-family: 'blackops';
+  src: url('../assets/fonts/BlackOpsOne-Regular.ttf');
+}
+
+md-toolbar #logo {
+  height: 100%;
+}
+
+#canvas {
+  height: 400;
+}
+
+.CodeMirror {
+  font-family: 'source-code';
+  font-weight: 400;
+}
+
+#methods-window {
+  position: fixed;
+  z-index: 1337;
+  top: 5%;
+  left: 1%;
+  font-size: 12px;
+}
+
+#methods-window > div {
+  background-color: #F0F0F0;
+}
+
+#methods-window p {
+  max-width:200px;
+}

@@ -1,0 +1,28 @@
+{
+  "name": "jLegends",
+  "main": "index.js",
+  "version": "0.0.0",
+  "authors": [
+    "Masterakos"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "angular-material": "master",
+    "angular-scroll-glue": "~2.0.6",
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-router-css": "*",
+    "phaser": "~2.4.4",
+    "font-awesome": "~4.4.0",
+    "angular-highlightjs": "~0.4.3"
+  }
+}

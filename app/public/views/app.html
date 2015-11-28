@@ -1,0 +1,104 @@
+<html ng-app="jlegends">
+  <head>
+    <link href="assets/components/angular-material/angular-material.min.css" rel="stylesheet">
+    <link href="assets/components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/components/messanger/css/messenger.css" rel="stylesheet">
+    <link href="assets/components/messanger/css/messenger-theme-flat.css" rel="stylesheet">
+    <link href="assets/components/codemirror/codemirror.css" rel="stylesheet">
+    <link href="assets/components/codemirror/material.css" rel="stylesheet">
+    <link href="assets/components/highlight/styles/github.css" rel="stylesheet">
+    <link href="views/app.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body ng-controller="appController" layout="column" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span><img id="logo" src="assets/img/logo-yellow.png" layout-padding /></span>
+        <md-button ui-sref="dashboard"><md-icon md-font-set="md">dashboard</md-icon> Main Menu</md-button>
+        <span flex></span>
+        <span class="md-body-2">{{ me.username }}</span>
+        <md-menu>
+         <md-button ng-click="$mdOpenMenu()" class="md-icon-button"><md-icon md-font-set="md">arrow_drop_down</md-icon></md-button>
+         <md-menu-content>
+           <md-menu-item><md-button target="_self" aria-label="Logout" ng-click="logout()">Logout</md-button></md-menu-item>
+         </md-menu-content>
+        </md-menu>
+        <md-button id="btn-chat" ng-click="toggleChat()"><md-icon md-font-set="md">{{ui.chat.icon}}</md-icon> Chat</md-button>
+      </div>
+    </md-toolbar>
+    
+    <div layout="row" flex ng-cloak>
+      <div flex>
+        <ui-view></ui-view>
+      </div>
+      <div id="chat" ng-show="ui.chat.shown" class="md-whiteframe-z3" layout="column">
+        <md-list id="chat-messages" scroll-glue flex>
+          <md-list-item class="chat-message" ng-repeat="message in ui.chat.messages">
+            <div class="md-list-item-text">
+              <div class="username md-caption">{{ message.username }}</div>
+              <div class="text md-body-1" ng-class="{'text-accent': message.system}">{{ message.text }}</div>
+            </div>
+          </md-list-item>
+        </md-list>
+        <md-input-container><label>{{me.username}}</label>
+          <input aria-label="Chat input" 
+                 id="chat-input" class="md-body-1"
+                 ng-model="ui.chat.input" 
+                 ng-enter="sendChatMessage()" 
+                 ng-focus="ui.chat.shown"></md-input-container>
+      </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="assets/components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/components/angular/angular.min.js"></script>
+    <script src="assets/components/angular-animate/angular-animate.min.js"></script>
+    <script src="assets/components/angular-aria/angular-aria.min.js"></script>
+    <script src="assets/components/angular-material/angular-material.min.js"></script>
+    <script src="assets/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="assets/components/angular-ui-router-css/angular-ui-router-css.min.js"></script>
+    <script src="assets/components/angular-scroll-glue/src/scrollglue.js"></script>
+    <script src="assets/components/messanger/js/messenger.min.js"></script>
+    <script src="assets/components/messanger/js/messenger-theme-flat.js"></script>
+    <script src="assets/components/codemirror/codemirror.js"></script>
+    <script src="assets/components/codemirror/javascript-mode.js"></script>
+    <script src="assets/components/highlight/highlight.pack.js"></script>
+    <script src="assets/components/angular-highlightjs/angular-highlightjs.min.js"></script>
+    <script src="assets/components/phaser/build/phaser.js"></script>
+    <script src="assets/components/fingerprint2.js"></script>
+    
+    <script src="assets/js/Javascript.extend.js"></script>
+    <script src="assets/js/Array.extend.js"></script>
+    <script src="assets/js/statics.js"></script>
+    
+    <script src="app.js"></script>
+    <script src="routes.js"></script>
+    <script src="services.js"></script>
+    <script src="directives.js"></script>
+    <script src="controllers/index.js"></script>
+    <script src="controllers/app.js"></script>
+    <script src="controllers/dashboard.js"></script>
+    <script src="controllers/game.js"></script>
+    <script src="controllers/games.js"></script>
+    <script src="controllers/multiplayer.js"></script>
+    <script src="controllers/select-character.js"></script>
+    <script src="controllers/gameUI.js"></script>
+    <script src="assets/components/angular-socket-io/socket.js"></script>
+    
+    <script src="game/classes/Game.js"></script>
+    <script src="game/classes/Canvas.js"></script>
+    <script src="game/classes/Player.js"></script>
+    <script src="game/classes/Npc.js"></script>
+    <script src="game/classes/Sandbox.js"></script>
+    <script src="game/classes/Animations.js"></script>
+    <script src="game/preload.js"></script>
+    <script src="game/create.js"></script>
+    <script src="game/update.js"></script>
+    <script src="game/render.js"></script>
+    
+    <script>
+      Messenger.options = { theme: 'flat', extraClasses: 'messenger-fixed messenger-on-top' };
+    </script>
+  </body>
+</html>

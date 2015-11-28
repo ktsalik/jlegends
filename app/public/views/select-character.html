@@ -1,0 +1,27 @@
+<md-dialog aria-label="select character" id="select-character-dialog">
+  <md-toolbar><div class="md-toolbar-tools" style="background-color: #000;">
+    <img ng-src="/assets/img/{{playMode.toLowerCase().replace(' ', '-')}}.png" style="height:80%" />&nbsp;
+    <h2>{{ playMode }}</h2>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="cancel()"><md-icon md-font-set="md">close</md-icon></md-button>
+  </div></md-toolbar>
+  <md-dialog-content>
+    <md-button class="md-primary md-raised" ng-click="characters.new.shown = true" ng-show="!characters.new.shown">Create New Character</md-button>
+    <md-select placeholder="Select Character" ng-model="characters.chosen" ng-show="!characters.new.shown && characters.length">
+      <md-option ng-repeat="char in characters" value="{{char.id}}">{{ char.name }} <span style="background-color:#FFC107" layout-padding>{{ char.class }} {{ char.level }}<span></md-option>
+    </md-select>
+    <div id="new-character-container" layout="column" ng-show="characters.new.shown">
+      <md-select placeholder="Choose Class" ng-model="characters.new.class">
+        <md-option ng-repeat="class in characters.new.classes" value="{{class}}">{{class}}</md-option>
+      </md-select>
+      <img src="/assets/img/{{characters.new.class}}.png" style="width:64px"/>
+      <md-input-container><label>Name</label><input ng-model="characters.new.name" ng-enter="createNew()" /></md-input-container>
+      <md-button class="md-primary md-raised" ng-click="createNew()" ng-show="characters.new.shown" ng-disabled="!characters.new.class || !characters.new.name">Create</md-button>
+    </div>
+
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="confirm()" class="md-accent md-raised" ng-disabled="!characters.chosen" ng-show="!characters.new.shown">Play</md-button>
+    <md-button ng-click="cancel()">Cancel</md-button>
+  </div>
+</md-dialog>

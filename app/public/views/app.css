@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'source-code';
+  src: url('../assets/fonts/SourceCodePro-Semibold.ttf');
+}
+
+@font-face {
+  font-family: 'blackops';
+  src: url('../assets/fonts/BlackOpsOne-Regular.ttf');
+}
+
+#beta { font-family: roboto; color: #FFC107; padding: 5px 10px; font-weight: 900; border-radius: 3.3px; }
+
+html, input {
+  font-family: 'source-code';
+}
+
+.hljs.javascript {
+  font-family: 'source-code';
+  font-size: 15px;
+}
+
+md-toolbar #logo {
+  height: 70px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-accent {
+  color: #FFC107;
+}
+
+.text-warning {
+  color: #8a6d3b;
+}
+
+.text-muted {
+  color: gray;
+}
+
+.text-mini {
+  font-size: 10px;
+}
+
+.md-button-mini {
+  font-size: 12px;
+  text-transform: none;
+  margin: 0px;
+  padding: 3px;
+  line-height: normal;
+  min-height: 0px;
+  min-width: 0px;
+}
+
+#chat {
+  z-index: 2;
+  width: 333px;
+  background-color: #FAFAFA;
+}
+#btn-chat .alert-badge {
+  position: absolute;
+  top: 0%;
+  right: 25%;
+  border-radius: 50%;
+  background-color: rgb(202, 0, 0);
+  height: 20px;
+  font-size: 10px;
+  line-height: 20px;
+  width: 20px;
+}
+#chat-messages { 
+  overflow-y: scroll;
+}
+#chat-messages .username {
+  color: #999999;
+}
+#chat-messages .text {
+  word-wrap: break-word;
+}

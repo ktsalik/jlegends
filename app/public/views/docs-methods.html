@@ -1,0 +1,29 @@
+<md-dialog aria-label="docs-methods" id="select-character-dialog" flex="100">
+  <md-toolbar><div class="md-toolbar-tools">
+    <h2><i class="fa fa-cubes"></i> {{ category | uppercase }}</h2>
+    <span flex></span>
+    <md-button class="md-icon-button" ng-click="close()"><md-icon md-font-set="md">close</md-icon></md-button>
+  </div></md-toolbar>
+  <md-dialog-content>
+    <div layout="row">
+      <div layout="column">
+        <md-list>
+          <md-list-item ng-repeat="(name, details) in methods">
+            <md-button ng-click="select(name)" 
+                       ng-class="{'md-accent md-raised': name == selected}"
+                       style="text-transform:none"><i class="fa fa-cube"></i>&nbsp;{{ name }}</md-button>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div flex layout="column" class="md-padding">
+        <span class="md-title">{{ method.declaration }}</span>
+        <p class="md-body-1">{{ method.description }}</p>
+        <small class="text-warning" ng-show="method.note.length"><i class="fa fa-warning"></i> {{ method.note }}</small>
+        <div hljs source="method.example" language="javascript"></div>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row">
+    <md-button ng-click="close()">Close</md-button>
+  </div>
+</md-dialog>

@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'source-code';
+  src: url(../fonts/SourceCodePro-Semibold.ttf);
+}
+
+html, body, .CodeMirror, code.javascript {
+  font-family: 'source-code'
+}
+
+.padding-10 {
+  padding: 5px;
+}
+
+#info-box {
+  word-break: normal;
+}
+
+.line-error {
+  background-color: #993333;
+}
